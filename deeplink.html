@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Uygulama açılıyor...</title>
+    <meta charset="UTF-8" />
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
+      if (token) {
+        window.location.href = "studybuddy://reset-password?token=" + token;
+      }
+    </script>
+  </head>
+  <body>
+    <p>Uygulama açılmadıysa <a id="fallback">buraya tıklayın</a></p>
+    <script>
+      const token = new URLSearchParams(window.location.search).get("token");
+      document.getElementById("fallback").href = "studybuddy://reset-password?token=" + token;
+    </script>
+  </body>
+</html>
