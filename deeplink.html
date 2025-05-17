@@ -1,30 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Uygulama açılıyor...</title>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <title>Yönlendiriliyor...</title>
     <script>
       const params = new URLSearchParams(window.location.search);
       const token = params.get("token");
-      const deepLink = token ? `studybuddy://reset-password?token=${token}` : null;
-
-      if (deepLink) {
-        window.location.href = deepLink;
+      if (token) {
+        // Uygulamayı açacak deep link
+        window.location.href = `studybuddy://resetpassword?token=${token}`;
+      } else {
+        document.write("Token bulunamadı");
       }
     </script>
   </head>
   <body>
-    <p>
-      Uygulama açılmadıysa 
-      <a id="fallback" href="#">buraya tıklayın</a>
-    </p>
-    <script>
-      if (deepLink) {
-        document.getElementById("fallback").href = deepLink;
-      } else {
-        document.getElementById("fallback").textContent = "Geçersiz bağlantı";
-        document.getElementById("fallback").removeAttribute("href");
-      }
-    </script>
+    Uygulama yönlendiriliyor...
   </body>
 </html>
