@@ -6,16 +6,25 @@
     <script>
       const params = new URLSearchParams(window.location.search);
       const token = params.get("token");
-      if (token) {
-        window.location.href = "studybuddy://reset-password?token=" + token;
+      const deepLink = token ? `studybuddy://reset-password?token=${token}` : null;
+
+      if (deepLink) {
+        window.location.href = deepLink;
       }
     </script>
   </head>
   <body>
-    <p>Uygulama açılmadıysa <a id="fallback">buraya tıklayın</a></p>
+    <p>
+      Uygulama açılmadıysa 
+      <a id="fallback" href="#">buraya tıklayın</a>
+    </p>
     <script>
-      const token = new URLSearchParams(window.location.search).get("token");
-      document.getElementById("fallback").href = "studybuddy://reset-password?token=" + token;
+      if (deepLink) {
+        document.getElementById("fallback").href = deepLink;
+      } else {
+        document.getElementById("fallback").textContent = "Geçersiz bağlantı";
+        document.getElementById("fallback").removeAttribute("href");
+      }
     </script>
   </body>
 </html>
